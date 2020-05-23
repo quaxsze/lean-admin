@@ -6,6 +6,8 @@
       <h5 class="text-muted">{{ producer }}</h5>
       <b-nav class="mt-3 mb-2" pills>
         <b-nav-item :to="`/dataset/${datasetId}`" active-class="active" :exact="true">Métadonnées</b-nav-item>
+        <b-nav-item :to="`/dataset/${datasetId}/description`" active-class="active" :exact="true">Description</b-nav-item>
+        <b-nav-item :to="`/dataset/${datasetId}/advanced`" active-class="active" :exact="true">Avancé</b-nav-item>
         <b-nav-item :to="`/dataset/${datasetId}/resources`" active-class="active" :exact="true">Ressources</b-nav-item>
       </b-nav>
       <router-view :dataset="dataset" v-if="dataset" @dataset-submit="submit"></router-view>

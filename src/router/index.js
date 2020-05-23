@@ -2,9 +2,12 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
-import Dataset from '../views/Dataset.vue'
+
+import Dataset from '@/views/Dataset.vue'
 import DatasetMetadata from '@/components/dataset/Metadata.vue'
 import DatasetResources from '@/components/dataset/Resources.vue'
+import DatasetAdvancedMetadata from '@/components/dataset/AdvancedMetadata.vue'
+import DatasetDescription from '@/components/dataset/Description.vue'
 
 Vue.use(VueRouter)
 
@@ -34,6 +37,14 @@ const routes = [
       {
         path: '',
         component: DatasetMetadata
+      },
+      {
+        path: 'advanced',
+        component: DatasetAdvancedMetadata
+      },
+      {
+        path: 'description',
+        component: DatasetDescription
       },
       {
         path: 'resources',
