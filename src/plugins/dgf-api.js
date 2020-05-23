@@ -14,8 +14,22 @@ class APILib {
     })
   }
 
+  _put (path, data) {
+    return this.http.put(`${this.serverURL}/api/1/${path}`, data).then(res => {
+      return res.body
+    })
+  }
+
   getDataset (id) {
     return this._get(`datasets/${id}/`)
+  }
+
+  getMe () {
+    return this._get('me/')
+  }
+
+  updateDataset (dataset) {
+    return this._put(`datasets/${dataset.id}/`, dataset)
   }
 
   getLicenses () {

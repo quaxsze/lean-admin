@@ -1,6 +1,5 @@
 <template>
-  <b-form @submit="submit">
-
+  <b-form @submit.prevent.stop="submit">
     <b-form-group
       label="Nom"
       label-for="title"
@@ -78,15 +77,18 @@
     </b-form-group>
 
     <b-form-group label="Date de dernière mise à jour" label-for="frequency_date" label-size="sm">
-      <b-form-datepicker reset-button label-reset-button="Effacer" size="sm" id="frequency_date" v-model="dataset.frequency_date" class="mb-2"></b-form-datepicker>
+      <b-form-datepicker reset-button label-reset-button="Effacer" size="sm" id="frequency_date"
+        v-model="dataset.frequency_date" class="mb-2"></b-form-datepicker>
     </b-form-group>
 
     <b-form-group label="Couverture temporelle" label-size="sm">
       <b-form-group label="De" label-cols-sm="1" label-for="temporal_coverage_start" label-size="sm">
-        <b-form-datepicker reset-button label-reset-button="Effacer" size="sm" id="temporal_coverage_start" v-model="dataset.temporal_coverage.start"></b-form-datepicker>
+        <b-form-datepicker reset-button label-reset-button="Effacer" size="sm" id="temporal_coverage_start"
+          v-model="dataset.temporal_coverage.start"></b-form-datepicker>
       </b-form-group>
       <b-form-group class="mb-0" label="À" label-cols-sm="1" label-for="temporal_coverage_end" label-size="sm">
-        <b-form-datepicker reset-button label-reset-button="Effacer" size="sm" id="temporal_coverage_end" v-model="dataset.temporal_coverage.end"></b-form-datepicker>
+        <b-form-datepicker reset-button label-reset-button="Effacer" size="sm" id="temporal_coverage_end"
+          v-model="dataset.temporal_coverage.end"></b-form-datepicker>
       </b-form-group>
     </b-form-group>
 
@@ -157,7 +159,7 @@ export default {
   },
   methods: {
     submit () {
-
+      this.$emit('dataset-submit')
     }
   }
 }
