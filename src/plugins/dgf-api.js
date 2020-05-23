@@ -44,6 +44,10 @@ class APILib {
     return this._get('spatial/granularities')
   }
 
+  getResourceTypes () {
+    return this._get('datasets/resource_types/')
+  }
+
   suggestTags (query) {
     console.log(query)
     return this._get('tags/suggest', { q: query })

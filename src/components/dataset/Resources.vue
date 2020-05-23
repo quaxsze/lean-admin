@@ -1,16 +1,21 @@
 <template>
-  <div v-if="dataset">
-    <h1>Ressources</h1>
-    {{ dataset.title }}
-  </div>
+  <router-view :dataset="dataset" :resource-types="resourceTypes"></router-view>
 </template>
 
 <script>
-
 export default {
-  name: 'DatasetResources',
   props: {
     dataset: Object
+  },
+  data () {
+    return {
+      resourceTypes: []
+    }
+  },
+  mounted () {
+    this.$dgfApi.getResourceTypes().then(res => {
+      this.resourceTypes = res
+    })
   }
 }
 </script>

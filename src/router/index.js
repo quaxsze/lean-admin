@@ -8,6 +8,8 @@ import DatasetMetadata from '@/components/dataset/Metadata.vue'
 import DatasetResources from '@/components/dataset/Resources.vue'
 import DatasetAdvancedMetadata from '@/components/dataset/AdvancedMetadata.vue'
 import DatasetDescription from '@/components/dataset/Description.vue'
+import ResourcesList from '@/components/dataset/ResourcesList.vue'
+import Resource from '@/components/resource/Resource.vue'
 
 Vue.use(VueRouter)
 
@@ -21,14 +23,6 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
     path: '/dataset/:id',
@@ -48,7 +42,17 @@ const routes = [
       },
       {
         path: 'resources',
-        component: DatasetResources
+        component: DatasetResources,
+        children: [
+          {
+            path: '',
+            component: ResourcesList
+          },
+          {
+            path: ':rid',
+            component: Resource
+          }
+        ]
       }
     ]
   }
