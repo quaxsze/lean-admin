@@ -1,7 +1,7 @@
 <template>
   <b-form @submit.prevent.stop="submit">
     <b-form-group
-      label="Nom"
+      label="Titre"
       label-for="title"
       label-size="sm"
     >

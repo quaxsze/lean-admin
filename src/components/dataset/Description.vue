@@ -1,3 +1,5 @@
+// TODO: make this required
+
 <template>
   <b-form @submit.prevent.stop="submit">
     <vue-simplemde v-model="dataset.description" :configs="config" />

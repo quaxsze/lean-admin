@@ -8,7 +8,7 @@
         <b-nav-item :to="`/dataset/${datasetId}`" active-class="active" :exact="true">Métadonnées</b-nav-item>
         <b-nav-item :to="`/dataset/${datasetId}/description`" active-class="active" :exact="true">Description</b-nav-item>
         <b-nav-item :to="`/dataset/${datasetId}/advanced`" active-class="active" :exact="true">Avancé</b-nav-item>
-        <b-nav-item :to="`/dataset/${datasetId}/resources`" active-class="active" :exact="true">Ressources</b-nav-item>
+        <b-nav-item :to="`/dataset/${datasetId}/resources`" active-class="active" :exact="true">Fichiers et ressources</b-nav-item>
       </b-nav>
       <router-view :dataset="dataset" v-if="dataset" @dataset-submit="submit"></router-view>
     </div>
@@ -54,8 +54,14 @@ export default {
   },
   mounted () {
     this.$dgfApi.getDataset(this.datasetId).then(dataset => {
+      // allows the form to operate when value is empty
       if (!dataset.temporal_coverage) {
         dataset.temporal_coverage = {}
+      }
+      // fallback to id instead of slug
+      if (this.datasetId !== dataset.id) {
+        this.$router.replace({ path: this.$route.path.replace(this.datasetId, dataset.id) })
+        this.datasetId = dataset.id
       }
       this.dataset = dataset
     }).catch(err => {
