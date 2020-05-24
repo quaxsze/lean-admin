@@ -2,8 +2,8 @@
   <div class="mt-2">
     <b-alert variant="danger" :show="error">🤕 Oups, on n'a pas pu récupérer ce jeu de données, désolé !</b-alert>
     <div v-if="!error">
-      <h2>{{ dataset.title }}</h2>
-      <h5 class="text-muted">{{ producer }}</h5>
+      <h2 class="d-inline">{{ dataset.title }}</h2>
+      <h5 class="text-muted d-inline"> — {{ producer }}</h5>
       <b-nav class="mt-3 mb-2" pills>
         <b-nav-item :to="`/dataset/${datasetId}`" active-class="active" :exact="true">Métadonnées</b-nav-item>
         <b-nav-item :to="`/dataset/${datasetId}/description`" active-class="active" :exact="true">Description</b-nav-item>

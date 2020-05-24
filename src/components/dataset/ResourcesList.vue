@@ -20,8 +20,8 @@ export default {
         { key: 'Titre', sortable: true },
         { key: 'Type', sortable: true },
         { key: 'Format', sortable: true },
-        { key: 'Taille', sortable: true },
-        { key: 'Modifié', sortable: true }
+        { key: 'Taille', sortable: true, formatter: 'fileSizeSI' },
+        { key: 'Modifié', sortable: true, formatter: 'formatDate' }
       ]
     }
   },
@@ -33,9 +33,8 @@ export default {
           Titre: r.title,
           Format: r.format,
           Type: r.type,
-          Taille: this.fileSizeSI(r.filesize),
-          Créé: this.formatDate(r.created_at),
-          Modifié: this.formatDate(r.last_modified)
+          Taille: r.filesize,
+          Modifié: r.last_modified
         }
       })
     }

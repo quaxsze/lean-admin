@@ -18,13 +18,17 @@ Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)
 Vue.use(VueResource)
 Vue.use(DGFAuth, {
-  domain: 'demo.data.gouv.fr',
-  // clientId: '5ec7dbe6617885d96e5f9cef',
-  clientId: '5ec80d33e7353aa3e14972e0',
+  domain: 'dev.local:7000',
+  protocol: 'http',
+  // prod clientId
+  clientId: '5ec7dbe6617885d96e5f9cef',
+  // demo clientId
+  // clientId: '5ec80d33e7353aa3e14972e0',
   redirect: '/login'
 })
 Vue.use(DGFApi, {
-  domain: 'demo.data.gouv.fr'
+  protocol: 'http',
+  domain: 'dev.local:7000'
 })
 
 new Vue({

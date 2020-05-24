@@ -10,6 +10,8 @@ import DatasetAdvancedMetadata from '@/components/dataset/AdvancedMetadata.vue'
 import DatasetDescription from '@/components/dataset/Description.vue'
 import ResourcesList from '@/components/dataset/ResourcesList.vue'
 import Resource from '@/components/resource/Resource.vue'
+import ResourceMetadata from '@/components/resource/ResourceMetadata.vue'
+import ResourceFile from '@/components/resource/ResourceFile.vue'
 
 Vue.use(VueRouter)
 
@@ -50,7 +52,17 @@ const routes = [
           },
           {
             path: ':rid',
-            component: Resource
+            component: Resource,
+            children: [
+              {
+                path: '',
+                component: ResourceMetadata
+              },
+              {
+                path: 'file',
+                component: ResourceFile
+              }
+            ]
           }
         ]
       }
