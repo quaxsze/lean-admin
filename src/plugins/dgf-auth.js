@@ -33,8 +33,7 @@ class AuthLib {
       {
         grant_type: 'authorization_code',
         code: code,
-        code_verifier: this.code_verifier,
-        redirect_uri: encodeURIComponent(`${this._getBaseUrl()}${this.options.redirect}`)
+        redirect_uri: `${this._getBaseUrl()}${this.options.redirect}`
       },
       {
         headers: {
@@ -43,6 +42,7 @@ class AuthLib {
         emulateJSON: true
       }
     )
+    console.log(response.body.access_token)
     localStorage.dgfToken = response.body.access_token
   }
 
@@ -50,13 +50,15 @@ class AuthLib {
    * Launches the login workflow
    */
   async login () {
-    const codeChallenge = await pkceChallengeFromVerifier(this.code_verifier)
+    // const codeChallenge = await pkceChallengeFromVerifier(this.code_verifier)
     const redirectURI = encodeURIComponent(`${this._getBaseUrl()}${this.options.redirect}`)
     const state = encodeURIComponent(this.state)
-    const serverURL = `${this.serverURL}/fr/oauth/authorize`
+    const serverURL = `${this.serverURL}/oauth/authorize`
     const clientId = this.options.clientId
 
-    window.location = `${serverURL}?redirect_uri=${redirectURI}&response_type=code&client_id=${clientId}&scope=default&state=${state}&code_challenge=${codeChallenge}&code_challenge_method=S256`
+    const urlLogin = `${serverURL}?redirect_uri=${redirectURI}&response_type=code&client_id=${clientId}&scope=default&state=${state}`
+    console.log(urlLogin)
+    window.location = urlLogin
   }
 
   /**
@@ -103,21 +105,21 @@ function generateRandomString () {
   return Array.from(array, dec => ('0' + dec.toString(16)).substr(-2)).join('')
 }
 
-function sha256 (plain) {
-  const encoder = new TextEncoder()
-  const data = encoder.encode(plain)
-  return window.crypto.subtle.digest('SHA-256', data)
-}
+// function sha256 (plain) {
+//   const encoder = new TextEncoder()
+//   const data = encoder.encode(plain)
+//   return window.crypto.subtle.digest('SHA-256', data)
+// }
 
-function base64urlencode (str) {
-  return btoa(String.fromCharCode.apply(null, new Uint8Array(str)))
-    .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
-}
+// function base64urlencode (str) {
+//   return btoa(String.fromCharCode.apply(null, new Uint8Array(str)))
+//     .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
+// }
 
-async function pkceChallengeFromVerifier (v) {
-  const hashed = await sha256(v)
-  return base64urlencode(hashed)
-}
+// async function pkceChallengeFromVerifier (v) {
+//   const hashed = await sha256(v)
+//   return base64urlencode(hashed)
+// }
 
 // Automatic installation if Vue has been added to the global scope.
 if (typeof window !== 'undefined' && window.Vue) {

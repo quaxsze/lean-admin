@@ -21,8 +21,8 @@ Vue.use(DGFAuth, {
   domain: 'dev.local:7000',
   protocol: 'http',
   // prod clientId
-  clientId: '5f042561eb81ac50441d1306',
-  clientSecret: '2euryav5bd2xmlB9Ho9GHaNpMIUxErnrnPC3wgZEYXxIGpsHQh',
+  clientId: '5f12b92b878eaca2dbc683f4',
+  clientSecret: 'iyrusPWvrwCafxTAF9Ue6Y7xRXNpiS59CiDFff5M8pR5HuYDKs',
   // demo clientId
   // clientId: '5ec80d33e7353aa3e14972e0',
   redirect: '/login'
