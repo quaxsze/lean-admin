@@ -29,6 +29,7 @@ export default {
   mounted () {
     this.isAuthenticated = this.$dgfAuth.isAuthenticated()
     if (this.isAuthenticated) {
+      // Comment
       this.$dgfApi.getMe().then(me => {
         this.me = me
       }).catch(err => {
